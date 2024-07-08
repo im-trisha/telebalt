@@ -1,0 +1,34 @@
+name: telebalt
+description: A sample command-line application.
+version: 1.0.0
+# repository: https://github.com/my_org/my_repo
+
+environment:
+  sdk: ^3.4.4
+
+dependencies:
+  dio: ^5.4.3+1
+  path: ^1.8.0
+  drift: ^2.18.0
+
+  slang: ^3.31.0
+  dotenv: ^4.2.0
+  talker: ^4.3.2
+  televerse: ^1.21.1
+  dart_dotenv: ^1.0.1
+
+  # Annotations for generators
+  retrofit: ^4.1.0
+  json_annotation: ^4.9.0
+  freezed_annotation: ^2.4.1
+
+dev_dependencies:
+  lints: ^4.0.0
+  test: ^1.24.0
+
+  # Generators
+  freezed: ^2.5.3
+  build_runner: ^2.4.11
+  retrofit_generator: '>=7.0.0 <8.0.0'
+  json_serializable: ^6.8.0
+  drift_dev: ^2.18.0

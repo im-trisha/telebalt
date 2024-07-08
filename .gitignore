@@ -1,0 +1,22 @@
+.dart_tool/
+build/
+pubspec.lock
+doc/api/
+
+# IntelliJ
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# Mac
+.DS_Store
+
+
+.env
+
+*.g.dart
+*.freezed.dart
+
+storage/
+storage/*

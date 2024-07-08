@@ -1,0 +1,6 @@
+services:
+  telebalt:
+    build:
+      context: .
+    volumes:
+      - ./storage:/usr/local/bin/media

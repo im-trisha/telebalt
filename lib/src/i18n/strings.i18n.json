@@ -1,0 +1,21 @@
+{
+  "bad_args_user": "Wrong number of arguments. There must only be one argument (The username or the id)",
+  "unknown_username": "The username is unknown. Please make sure the user has at least sent a message with the new username",
+  "commands": {
+    "authorize": {
+      "success": "The user has been authorized successfully"
+    },
+    "unauthorize": {
+      "success": "The user has been unauthorize successfully"
+    },
+    "promote": {
+      "success": "The user has been promoted successfully"
+    },
+    "demote": {
+      "success": "The user has been demoted successfully"
+    },
+    "start": "Hello! Send a link from any famous video platform, I'll try to send the video back!",
+    "help": "Send a link from any famous video platform, I'll try to send the video back",
+    "sent_by": "This message was sent by: ${name}"
+  }
+}
