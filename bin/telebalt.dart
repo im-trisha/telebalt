@@ -43,14 +43,14 @@ void main(List<String> args) async {
   bot.command('nickname', nickname);
   bot.onMyChatMember(myChatMember);
 
-  bot.onStop(() async {
-    talker.info("Tidying resources...");
-    await database.close();
-  });
-
   bot.onText(onMessage);
+
+  bot.onStop(() => talker.info("The bot has been stopped."));
 
   talker.info("Starting bot...");
 
   await bot.start();
+
+  talker.info("Tidying resources...");
+  await database.close();
 }

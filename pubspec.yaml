@@ -14,7 +14,7 @@ dependencies:
   slang: ^3.31.0
   dotenv: ^4.2.0
   talker: ^4.3.2
-  televerse: ^1.22.0
+  televerse: ^1.22.1
   dart_dotenv: ^1.0.1
 
   # Annotations for generators
