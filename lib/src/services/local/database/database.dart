@@ -5,6 +5,7 @@ import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
 import 'package:path/path.dart' as p;
 import 'package:telebalt/src/consts.dart';
+import 'misc.dart';
 
 part 'media/media_dao.dart';
 part 'media/media_table.dart';
@@ -33,6 +34,19 @@ class Database extends _$Database {
     return MigrationStrategy(
       onCreate: (m) async {
         await m.createAll();
+
+        for (final table in allTables) {
+          if (table is Timestamps) {
+            final name = table.entityName;
+
+            await customStatement('''
+            CREATE TRIGGER updated_at_$name AFTER UPDATE ON $name
+            BEGIN
+              UPDATE $name SET updated_at = CURRENT_TIMESTAMP;
+            END;
+          ''');
+          }
+        }
 
         await into(users).insert(
           UsersCompanion(

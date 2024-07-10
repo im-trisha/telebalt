@@ -11,5 +11,5 @@ import 'package:televerse/televerse.dart';
 part 'handlers/on_message.dart';
 part 'handlers/promote.dart';
 part 'handlers/authorize.dart';
-part 'handlers/my_chat_member.dart';
 part 'handlers/misc_handlers.dart';
+part 'handlers/nickname.dart';

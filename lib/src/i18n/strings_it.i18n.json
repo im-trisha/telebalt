@@ -1,5 +1,5 @@
 {
-  "bad_args_user": "Numero sbagliato di argomenti, assicurati di averne inserito solo uno (L'username o l'id)",
+  "not_enough_args": "Non abbastanza argomenti",
   "unknown_username": "Username sconosciuto, assicurati che abbia inviato un messaggio dopo il cambio di username",
   "commands": {
     "authorize": {
@@ -13,6 +13,9 @@
     },
     "demote": {
       "success": "L'utente è stato sbariburgato con successo"
+    },
+    "nickname": {
+      "success": "Il nomignolo dell'utente ${name} è stato cambiato con successo"
     },
     "start": "Ciao! Inviami un link da qualsiasi piattaforma famosa, proverò a inviarti il video",
     "help": "Inviami un link da qualsiasi piattaforma famosa, proverò a inviarti il video",

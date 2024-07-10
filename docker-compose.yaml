@@ -3,4 +3,4 @@ services:
     build:
       context: .
     volumes:
-      - ./storage:/usr/local/bin/media
+      - ./storage:/app/storage

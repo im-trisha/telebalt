@@ -2,7 +2,7 @@ part of '../database.dart';
 
 @TableIndex(name: 'usernames', columns: {#username})
 @DataClassName('User')
-class Users extends Table {
+class Users extends Table with Timestamps {
   IntColumn get id => integer()();
 
   TextColumn get firstName => text()();
@@ -14,7 +14,7 @@ class Users extends Table {
   BoolColumn get isAuthorized => boolean().withDefault(Constant(false))();
   BoolColumn get isAdmin => boolean().withDefault(Constant(false))();
 
-  DateTimeColumn get createdAt => dateTime().withDefault(currentDateAndTime)();
+  TextColumn get friendlyNickname => text().nullable()();
 
   @override
   Set<Column<Object>>? get primaryKey => {id};

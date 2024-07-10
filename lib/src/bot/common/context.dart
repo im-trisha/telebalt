@@ -64,8 +64,8 @@ class TgContext extends Context {
   Future<User?> target() async {
     final i18n = t(await user());
 
-    if (args.length != 1) {
-      await reply(i18n.badArgsUser);
+    if (args.isEmpty) {
+      await reply(i18n.notEnoughArgs);
       return null;
     }
 

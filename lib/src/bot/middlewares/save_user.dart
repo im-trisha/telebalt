@@ -6,7 +6,7 @@ class SaveUser implements Middleware<TgContext> {
     TgContext ctx,
     NextFunction next,
   ) async {
-    final user = ctx.from, chat = ctx.chat;
+    final user = ctx.from;
     if (user != null) {
       await ctx.users.patch(
         user.id,
@@ -17,8 +17,6 @@ class SaveUser implements Middleware<TgContext> {
       );
     }
 
-    if (chat != null) {}
-    
     await next();
   }
 }

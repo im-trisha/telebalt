@@ -8,7 +8,7 @@ Future<void> onMessage(TgContext ctx) async {
   // Unauthorized user
   if (!user.isAuthorized && !user.isAdmin) return;
 
-  final media = await ctx.media.read(text);
+  var media = await ctx.media.read(text);
   if (media != null) {
     _sendFromMedia(ctx, media);
     return;
@@ -24,14 +24,17 @@ Future<void> onMessage(TgContext ctx) async {
     savePath: ctx.settings.storagePath,
   );
 
-  await ctx.media.create(text, downloadRes.ids, downloadRes.filename);
-  await _sendFromMedia(ctx, (await ctx.media.read(text))!);
+  media = await ctx.media.create(text, downloadRes.ids, downloadRes.filename);
+  await _sendFromMedia(ctx, media);
 }
 
 Future<void> _sendFromMedia(TgContext ctx, Media media) async {
   final ids = media.videoIds;
   final user = await ctx.user();
-  final caption = ctx.t(user).commands.sentBy(name: user?.firstName ?? '???');
+
+  final fromName = user?.friendlyNickname ?? user?.firstName ?? '???';
+  final caption = ctx.t(user).commands.sentBy(name: fromName);
+
   await ctx.deleteMessage();
 
   if (ids.length == 1) {

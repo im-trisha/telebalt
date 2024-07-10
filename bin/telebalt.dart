@@ -32,16 +32,22 @@ void main(List<String> args) async {
 
   bot.use(SaveUser());
 
-  bot.help(help);
-  bot.onMyChatMember(myChatMember);
   bot.onError(onError);
-  bot.onStop(() => onStop(database));
 
-  bot.hears(RegExp('/start'), start);
-  bot.hears(RegExp('/promote .*'), promote);
-  bot.hears(RegExp('/demote .*'), demote);
-  bot.hears(RegExp('/authorize .*'), authorize);
-  bot.hears(RegExp('/unauthorize .*'), unauthorize);
+  bot.command('help', help);
+  bot.command('start', start);
+  bot.command('promote', promote);
+  bot.command('demote', demote);
+  bot.command('authorize', authorize);
+  bot.command('unauthorize', unauthorize);
+  bot.command('nickname', nickname);
+  bot.onMyChatMember(myChatMember);
+
+  bot.onStop(() async {
+    talker.info("Tidying resources...");
+    await database.close();
+  });
+
   bot.onText(onMessage);
 
   talker.info("Starting bot...");

@@ -10,8 +10,8 @@ class MediaDAO extends DatabaseAccessor<Database> with _$MediaDAOMixin {
     return query.getSingleOrNull();
   }
 
-  Future<int> create(String url, List<String> videoIds, String name) {
-    return db.into(db.cachedMedia).insert(
+  Future<Media> create(String url, List<String> videoIds, String name) {
+    return db.into(db.cachedMedia).insertReturning(
           CachedMediaCompanion(
             url: Value(url),
             videoIds: Value(videoIds),

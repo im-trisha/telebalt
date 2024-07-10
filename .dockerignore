@@ -19,6 +19,7 @@ docker-compose.yml
 
 *.g.dart
 *.freezed.dart
+*.md
 
 test/
 doc/
