@@ -17,6 +17,12 @@
     "nickname": {
       "success": "User ${name}'s nickname has been changed successfully"
     },
+    "status": {
+      "success": "Here's the user's infos:\nID: ${id}\nFirst name: ${firstName}\nLast name: ${lastName}\nUsername: ${username}\nLanguage: ${language}\nNickname: ${friendlyNickname}\nIs authorized: ${isAuthorized}\nIs admin: ${isAdmin}\nIs premium: ${isPremium}"
+    },
+    "users": {
+      "success": "Here's a list of the users:\n${users}"
+    },
     "start": "Hello! Send a link from any famous video platform, I'll try to send the video back!",
     "help": "Send a link from any famous video platform, I'll try to send the video back",
     "sent_by": "This message was sent by: ${name}"

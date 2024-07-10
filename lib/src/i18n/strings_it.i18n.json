@@ -17,6 +17,12 @@
     "nickname": {
       "success": "Il nomignolo dell'utente ${name} è stato cambiato con successo"
     },
+    "status": {
+      "success": "Ecco le informazioni dell'utente:\nID: ${id}\nNome: ${firstName}\nCognome: ${lastName}\nUsername: ${username}\nLingua: ${language}\nNomignolo: ${friendlyNickname}\nStato autorizzazione: ${isAuthorized}\nStato admin: ${isAdmin}\nUtente premium: ${isPremium}"
+    },
+    "users": {
+      "success": "Ecco una lista degli utenti:\n${users}"
+    },
     "start": "Ciao! Inviami un link da qualsiasi piattaforma famosa, proverò a inviarti il video",
     "help": "Inviami un link da qualsiasi piattaforma famosa, proverò a inviarti il video",
     "sent_by": "Questo messaggio è stato inviato da: ${name}"

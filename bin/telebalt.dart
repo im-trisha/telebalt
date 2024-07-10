@@ -41,6 +41,8 @@ void main(List<String> args) async {
   bot.command('authorize', authorize);
   bot.command('unauthorize', unauthorize);
   bot.command('nickname', nickname);
+  bot.command('status', status);
+  bot.command('users', users);
   bot.onMyChatMember(myChatMember);
 
   bot.onText(onMessage);

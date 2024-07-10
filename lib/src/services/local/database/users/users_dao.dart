@@ -4,6 +4,8 @@ part of '../database.dart';
 class UsersDAO extends DatabaseAccessor<Database> with _$UsersDAOMixin {
   UsersDAO(super.db);
 
+  Future<List<User>> all() => db.select(db.users).get();
+
   Future<User?> read(int id) {
     final query = db.select(db.users)..where((tbl) => tbl.id.equals(id));
     return query.getSingleOrNull();

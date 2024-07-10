@@ -13,3 +13,5 @@ part 'handlers/promote.dart';
 part 'handlers/authorize.dart';
 part 'handlers/misc_handlers.dart';
 part 'handlers/nickname.dart';
+part 'handlers/status.dart';
+part 'handlers/users.dart';
