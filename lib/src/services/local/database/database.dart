@@ -35,19 +35,6 @@ class Database extends _$Database {
       onCreate: (m) async {
         await m.createAll();
 
-        for (final table in allTables) {
-          if (table is Timestamps) {
-            final name = table.entityName;
-
-            await customStatement('''
-            CREATE TRIGGER updated_at_$name AFTER UPDATE ON $name
-            BEGIN
-              UPDATE $name SET updated_at = CURRENT_TIMESTAMP;
-            END;
-          ''');
-          }
-        }
-
         await into(users).insert(
           UsersCompanion(
             id: Value(adminId),
