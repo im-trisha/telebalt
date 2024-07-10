@@ -15,6 +15,30 @@ class UsersDAO extends DatabaseAccessor<Database> with _$UsersDAOMixin {
     return query.getSingleOrNull();
   }
 
+  Future<User> insert(
+    int id, {
+    required String firstName,
+    String? lastName,
+    String? username,
+    String? language,
+    bool? isPremium,
+    bool? isAuthorized,
+    bool? isAdmin,
+    String? friendlyNickname,
+  }) {
+    return db.into(db.users).insertReturning(UsersCompanion(
+          id: Value(id),
+          firstName: Value.absentIfNull(firstName),
+          lastName: Value.absentIfNull(lastName),
+          username: Value.absentIfNull(username),
+          language: Value.absentIfNull(language),
+          isPremium: Value.absentIfNull(isPremium),
+          isAuthorized: Value.absentIfNull(isAuthorized),
+          isAdmin: Value.absentIfNull(isAdmin),
+          friendlyNickname: Value.absentIfNull(friendlyNickname),
+        ));
+  }
+
   Future<void> patch(
     int id, {
     String? firstName,
@@ -25,8 +49,9 @@ class UsersDAO extends DatabaseAccessor<Database> with _$UsersDAOMixin {
     bool? isAuthorized,
     bool? isAdmin,
     String? friendlyNickname,
-  }) async {
-    final companion = UsersCompanion(
+  }) {
+    return (db.update(db.users)..where((tbl) => tbl.id.equals(id)))
+        .write(UsersCompanion(
       id: Value(id),
       firstName: Value.absentIfNull(firstName),
       lastName: Value.absentIfNull(lastName),
@@ -36,13 +61,30 @@ class UsersDAO extends DatabaseAccessor<Database> with _$UsersDAOMixin {
       isAuthorized: Value.absentIfNull(isAuthorized),
       isAdmin: Value.absentIfNull(isAdmin),
       friendlyNickname: Value.absentIfNull(friendlyNickname),
-    );
+    ));
+  }
 
-    if ((await read(id)) == null) {
-      await db.into(db.users).insert(companion);
-    } else {
-      final query = db.update(db.users)..where((tbl) => tbl.id.equals(id));
-      await query.write(companion);
-    }
+  Future<int> upsert(
+    int id, {
+    String? firstName,
+    String? lastName,
+    String? username,
+    String? language,
+    bool? isPremium,
+    bool? isAuthorized,
+    bool? isAdmin,
+    String? friendlyNickname,
+  }) async {
+    return db.into(db.users).insertOnConflictUpdate(UsersCompanion(
+          id: Value(id),
+          firstName: Value.absentIfNull(firstName),
+          lastName: Value.absentIfNull(lastName),
+          username: Value.absentIfNull(username),
+          language: Value.absentIfNull(language),
+          isPremium: Value.absentIfNull(isPremium),
+          isAuthorized: Value.absentIfNull(isAuthorized),
+          isAdmin: Value.absentIfNull(isAdmin),
+          friendlyNickname: Value.absentIfNull(friendlyNickname),
+        ));
   }
 }

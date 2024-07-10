@@ -8,7 +8,7 @@ class SaveUser implements Middleware<TgContext> {
   ) async {
     final user = ctx.from;
     if (user != null) {
-      await ctx.users.patch(
+      await ctx.users.upsert(
         user.id,
         firstName: user.firstName,
         lastName: user.lastName,
