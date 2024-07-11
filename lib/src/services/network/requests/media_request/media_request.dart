@@ -57,13 +57,13 @@ class MediaRequest with _$MediaRequest {
     @Default(AudioFormat.best) AudioFormat aFormat,
     @Default(FilenamePattern.nerdy) FilenamePattern filenamePattern,
     @Default(true) bool? tiktokH265,
-    VideoCodec? vCodec,
-    bool? isAudioOnly,
-    bool? isTTFullAudio,
-    bool? isAudioMuted,
-    bool? dubLang,
-    bool? disableMetadata,
-    bool? twitterGif,
+    @Default(VideoCodec.h264) VideoCodec? vCodec,
+    @Default(false) bool? isAudioOnly,
+    @Default(false) bool? isTTFullAudio,
+    @Default(false) bool? isAudioMuted,
+    @Default(false) bool? dubLang,
+    @Default(false) bool? disableMetadata,
+    @Default(false) bool? twitterGif,
   }) = _MediaRequest;
 
   factory MediaRequest.fromJson(Map<String, Object?> json) =>

@@ -13,19 +13,18 @@ Future<void> myChatMember(TgContext ctx) async {
 }
 
 Future<void> onError(BotError<TgContext> error) async {
-  final message = """An error has occurred. Here's some info:
-IsMiddleware: <code>${error.sourceIsMiddleware}</code>
-Update: <code>${error.ctx?.update.type.name}</code>
-Text (If any): <code>${error.ctx?.message?.text}</code>
-Error: <code>${error.error}</code>
-Stacktrace: <code>${error.stackTrace}</code>""";
-  error.ctx?.logger.error(message);
+  final msg = """An error has occurred. Here's some info:
+IsMiddleware: ```${error.sourceIsMiddleware}```
+Update: ```${error.ctx?.update.type.name}```
+Text (If any): ```${error.ctx?.message?.text}```
+Error: ```${error.error}```
+Stacktrace: ```${error.stackTrace}```""";
+  error.ctx?.logger.error(msg);
 
-  final chatId = ID.create(error.ctx?.settings.adminId);
+  final to = ID.create(error.ctx?.settings.adminId);
   try {
-    // TODO: Televerse produces an error, add ParseMode as soon as the lib fixes the error
-    await error.ctx?.api.sendMessage(chatId, message);
-  } catch (_, __) {
-    await error.ctx?.api.sendMessage(chatId, "An error has occurred");
+    await error.ctx?.api.sendMessage(to, msg, parseMode: ParseMode.markdownV2);
+  } catch (_) {
+    await error.ctx?.api.sendMessage(to, "An error has occurred");
   }
 }
