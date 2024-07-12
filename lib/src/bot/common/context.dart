@@ -48,8 +48,11 @@ class TgContext extends Context {
     };
   }
 
-  Translations t(User? user) =>
-      (_translations[user?.language ?? K.defaultLang]!).translations;
+  Translations t(User? user) {
+    final validUser = user == null && _translations.containsKey(user?.language);
+    final lang = validUser ? user!.language : K.defaultLang;
+    return (_translations[lang]!).translations;
+  }
 
   User? _user;
   Future<User?> user() async {
