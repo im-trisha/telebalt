@@ -1,22 +1,23 @@
 part of '../handlers.dart';
 
 Future<void> onMessage(TgContext ctx) async {
-  final text = ctx.message?.text, user = await ctx.user();
+  final text = ctx.message?.text?.trim(), user = await ctx.user();
   // Invalid message
   if (text == null || user == null || !K.urlRegex.hasMatch(text)) return;
 
   // Unauthorized user
   if (!user.isAuthorized && !user.isAdmin) return;
 
+  await ctx.react('👍');
+
   var media = await ctx.media.read(text);
   if (media != null) {
-    _sendFromMedia(ctx, media);
+    await _sendFromMedia(ctx, media);
     return;
   }
 
   final res = await ctx.cobalt.getMedia(MediaRequest(url: text));
 
-  await ctx.react('👍');
   await ctx.replyWithChatAction(ChatAction.uploadDocument);
 
   final downloadRes = await ctx.cobalt.download(
