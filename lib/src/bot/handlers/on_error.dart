@@ -18,9 +18,7 @@ Stacktrace: ```${_escapeMDV2(error.stackTrace.toString())}```""";
   final to = ID.create(error.ctx?.settings.adminId);
   try {
     await error.ctx?.api.sendMessage(to, msg, parseMode: ParseMode.markdownV2);
-  } catch (e, s) {
-    print(e);
-    print(s);
+  } catch (e) {
     await error.ctx?.api.sendMessage(to, "An error has occurred");
   }
 }
