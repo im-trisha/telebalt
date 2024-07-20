@@ -6,7 +6,9 @@ Future<void> onInlineQuery(TgContext ctx) async {
 
   final url = ctx.inlineQuery!.query;
 
-  final media = await handleUrl(
+  if (url.trim().isEmpty) return;
+
+  final Media media = await handleUrl(
     ctx,
     url: url,
     chat: ID.create(user.id),
@@ -15,15 +17,9 @@ Future<void> onInlineQuery(TgContext ctx) async {
   );
 
   if (media.isPicker && media.fileIds.length > 1) {
-    await ctx.answerInlineQuery(
-      InlineQueryResultBuilder()
-          .article(
-            'invalid-url',
-            ctx.t(user).pickerUnsupported,
-            (gen) => gen.text(ctx.t(user).pickerUnsupportedDetails),
-          )
-          .build(),
-    );
+    final title = ctx.t(user).pickerUnsupported;
+    final content = ctx.t(user).pickerUnsupportedDetails;
+    await ctx.answerInlineQuery([textInlineQuery('invalid', title, content)]);
   }
 
   late final tg.InlineQueryResult result;
