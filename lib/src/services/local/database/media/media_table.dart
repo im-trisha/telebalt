@@ -3,8 +3,12 @@ part of '../database.dart';
 @DataClassName('Media')
 class CachedMedia extends Table with Timestamps {
   TextColumn get url => text()();
-  TextColumn get videoIds => text().map(const StringListConverter())();
   TextColumn get name => text()();
+
+  TextColumn get videoIds => text().map(const StringListConverter())();
+  TextColumn get fileIds => text().map(const StringListConverter())();
+
+  BoolColumn get isPicker => boolean()();
 
   @override
   Set<Column<Object>> get primaryKey => {url};

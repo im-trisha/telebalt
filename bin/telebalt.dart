@@ -44,6 +44,8 @@ void main(List<String> args) async {
   bot.command('status', status);
   bot.command('users', users);
 
+  bot.onInlineQuery(onInlineQuery);
+
   bot.onMyChatMember(myChatMember);
 
   bot.onText(onMessage);

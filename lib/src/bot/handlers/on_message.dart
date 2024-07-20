@@ -10,53 +10,8 @@ Future<void> onMessage(TgContext ctx) async {
 
   await ctx.react('👍');
 
-  var media = await ctx.media.read(text);
-  if (media != null) {
-    await _sendFromMedia(ctx, media);
-    return;
-  }
-
-  final res = await ctx.cobalt.getMedia(MediaRequest(url: text));
-
-  await ctx.replyWithChatAction(ChatAction.uploadDocument);
-
-  final downloadRes = await ctx.cobalt.download(
-    res,
-    savePath: ctx.settings.storagePath,
-  );
-
-  media = await ctx.media.create(text, downloadRes.ids, downloadRes.filename);
-  await _sendFromMedia(ctx, media);
-}
-
-Future<void> _sendFromMedia(TgContext ctx, Media media) async {
-  final ids = media.videoIds;
-  final user = await ctx.user();
-
-  final fromName = user?.friendlyNickname ?? user?.firstName ?? '???';
+  final fromName = user.friendlyNickname ?? user.firstName;
   final caption = ctx.t(user).commands.sentBy(name: fromName);
 
-  await ctx.deleteMessage();
-
-  if (ids.length == 1) {
-    final file = File(p.join(ctx.settings.storagePath, ids.first));
-    await ctx.replyWithVideo(
-      InputFile.fromFile(file, name: media.name),
-      caption: caption,
-    );
-    return;
-  }
-
-  for (var i = 0; i < ids.length; i += 10) {
-    int end = (i + 10 < ids.length) ? i + 10 : ids.length;
-    final chunk = ids.sublist(i, end);
-
-    await ctx.replyWithMediaGroup([
-      for (final id in chunk)
-        tg.InputMediaPhoto(
-          media: InputFile.fromFile(File(p.join(ctx.settings.storagePath, id))),
-        ),
-    ]);
-  }
-  await ctx.reply(caption);
+  await handleUrl(ctx, url: text, chat: ctx.chat!.getId(), caption: caption);
 }

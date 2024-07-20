@@ -1,6 +1,8 @@
 {
   "not_enough_args": "Not enough arguments",
   "unknown_username": "The username is unknown. Please make sure the user has at least sent a message with the new username",
+  "picker_unsupported": "Format unsupported",
+  "picker_unsupported_details": "The video format is not supported. You probably tried sending a Tiktok url with more than one image, its not possible to send them inline with telegram. Check your private messages",
   "commands": {
     "authorize": {
       "success": "The user has been authorized successfully"
@@ -26,5 +28,8 @@
     "start": "Hello! Send a link from any famous video platform, I'll try to send the video back!",
     "help": "Send a link from any famous video platform, I'll try to send the video back",
     "sent_by": "This message was sent by: ${name}"
+  },
+  "inline": {
+    "here_are_the_results": "Media"
   }
 }

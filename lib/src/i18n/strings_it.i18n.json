@@ -1,6 +1,8 @@
 {
   "not_enough_args": "Non abbastanza argomenti",
   "unknown_username": "Username sconosciuto, assicurati che abbia inviato un messaggio dopo il cambio di username",
+  "picker_unsupported": "Formato non supportato",
+  "picker_unsupported_details": "Il formato del video non è supportato.\nHai probabilmente provato ad inviare un url di Tiktok contenente più di un immagine, non è possibile inviarli inline per delle limitazioni di telegram, controlla i messaggi privati",
   "commands": {
     "authorize": {
       "success": "L'utente è stato autorizzato con successo"
@@ -26,5 +28,8 @@
     "start": "Ciao! Inviami un link da qualsiasi piattaforma famosa, proverò a inviarti il video",
     "help": "Inviami un link da qualsiasi piattaforma famosa, proverò a inviarti il video",
     "sent_by": "Questo messaggio è stato inviato da: ${name}"
+  },
+  "inline": {
+    "here_are_the_results": "Media"
   }
 }
