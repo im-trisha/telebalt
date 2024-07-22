@@ -3,6 +3,7 @@
   "unknown_username": "The username is unknown. Please make sure the user has at least sent a message with the new username",
   "picker_unsupported": "Format unsupported",
   "picker_unsupported_details": "The video format is not supported. You probably tried sending a Tiktok url with more than one image, its not possible to send them inline with telegram. Check your private messages",
+  "probably_unsupported_url": "There was an error while handling the url, probably the link is not supported",
   "commands": {
     "authorize": {
       "success": "The user has been authorized successfully"

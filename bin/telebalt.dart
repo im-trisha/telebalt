@@ -1,12 +1,12 @@
 import 'package:dart_dotenv/dart_dotenv.dart';
 import 'package:dio/dio.dart';
 import 'package:talker/talker.dart';
-import 'package:telebalt/src/bot/common/context.dart';
-import 'package:telebalt/src/bot/handlers.dart';
-import 'package:telebalt/src/bot/middlewares.dart';
-import 'package:telebalt/src/models/models.dart';
-import 'package:telebalt/src/services/local/database/database.dart';
-import 'package:telebalt/src/services/network/network.dart';
+import 'package:telebalt/bot/common/context.dart';
+import 'package:telebalt/bot/handlers.dart';
+import 'package:telebalt/bot/middlewares.dart';
+import 'package:telebalt/models/models.dart';
+import 'package:telebalt/services/local/database/database.dart';
+import 'package:telebalt/services/network/network.dart';
 import 'package:televerse/televerse.dart';
 
 void main(List<String> args) async {

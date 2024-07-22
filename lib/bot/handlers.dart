@@ -1,8 +1,8 @@
-import 'package:telebalt/src/bot/common/context.dart';
-import 'package:telebalt/src/bot/common/handle_url.dart';
-import 'package:telebalt/src/bot/common/utils.dart';
-import 'package:telebalt/src/consts.dart';
-import 'package:telebalt/src/services/local/database/database.dart';
+import 'package:telebalt/bot/common/context.dart';
+import 'package:telebalt/bot/common/handle_url.dart';
+import 'package:telebalt/bot/common/utils.dart';
+import 'package:telebalt/consts.dart';
+import 'package:telebalt/services/local/database/database.dart';
 import 'package:televerse/telegram.dart' as tg;
 import 'package:televerse/televerse.dart';
 

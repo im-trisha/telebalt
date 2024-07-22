@@ -3,8 +3,8 @@ import 'dart:math';
 import 'package:dio/dio.dart' hide Headers;
 import 'package:path/path.dart' as p;
 import 'package:retrofit/retrofit.dart';
-import 'package:telebalt/src/consts.dart';
-import 'package:telebalt/src/services/network/network.dart';
+import 'package:telebalt/consts.dart';
+import 'package:telebalt/services/network/network.dart';
 
 part 'cobalt.g.dart';
 

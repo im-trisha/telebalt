@@ -1,9 +1,9 @@
 import 'package:talker/talker.dart';
-import 'package:telebalt/src/consts.dart';
-import 'package:telebalt/src/i18n/strings.g.dart';
-import 'package:telebalt/src/models/models.dart';
-import 'package:telebalt/src/services/local/database/database.dart';
-import 'package:telebalt/src/services/network/network.dart';
+import 'package:telebalt/consts.dart';
+import 'package:telebalt/i18n/strings.g.dart';
+import 'package:telebalt/models/models.dart';
+import 'package:telebalt/services/local/database/database.dart';
+import 'package:telebalt/services/network/network.dart';
 import 'package:televerse/televerse.dart';
 
 final _translations = AppLocale.values.asNameMap();

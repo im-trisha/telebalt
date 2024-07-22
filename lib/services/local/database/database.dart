@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
 import 'package:path/path.dart' as p;
-import 'package:telebalt/src/consts.dart';
+import 'package:telebalt/consts.dart';
 import 'misc.dart';
 
 part 'media/media_dao.dart';

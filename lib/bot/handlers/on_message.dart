@@ -8,10 +8,16 @@ Future<void> onMessage(TgContext ctx) async {
   // Unauthorized user
   if (!user.isAuthorized && !user.isAdmin) return;
 
-  await ctx.react('👍');
-
   final fromName = user.friendlyNickname ?? user.firstName;
   final caption = ctx.t(user).commands.sentBy(name: fromName);
 
-  await handleUrl(ctx, url: text, chat: ctx.chat!.getId(), caption: caption);
+  try {
+    await ctx.react('👍');
+    await handleUrl(ctx, url: text, chat: ctx.chat!.getId(), caption: caption);
+    await ctx.deleteMessage();
+  } catch (e) {
+    await ctx.react('👍');
+    await ctx.reply(ctx.t(user).probablyUnsupportedUrl);
+    await ctx.react('💔');
+  }
 }
