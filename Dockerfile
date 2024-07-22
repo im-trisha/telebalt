@@ -8,6 +8,7 @@ COPY pubspec.* ./
 RUN dart pub get
 
 # Cache slang generated files
+COPY slang.yaml slang.yaml
 COPY lib/i18n lib/i18n 
 RUN dart run slang
 
