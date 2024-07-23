@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:path/path.dart' as p;
 import 'package:telebalt/bot/common/context.dart';
+import 'package:telebalt/bot/common/utils.dart';
 import 'package:telebalt/services/local/database/database.dart';
 import 'package:telebalt/services/network/network.dart';
 import 'package:televerse/telegram.dart' as tg;
@@ -73,8 +74,6 @@ Future<List<String>> _sendMedia(
   String? caption,
   required String url,
 }) async {
-  final shareButton = InlineMenu().switchInlineQuery('➕', url);
-
   if (mediaIds.length == 1) {
     late final tg.Message res;
     late final InputFile inputFile;
@@ -91,14 +90,14 @@ Future<List<String>> _sendMedia(
         chatId,
         inputFile,
         caption: caption,
-        replyMarkup: shareButton,
+        replyMarkup: shareButton(url),
       );
     } else {
       res = await ctx.api.sendVideo(
         chatId,
         inputFile,
         caption: caption,
-        replyMarkup: shareButton,
+        replyMarkup: shareButton(url),
       );
     }
     return [res.video?.fileId ?? res.photo!.first.fileId];
@@ -122,9 +121,7 @@ Future<List<String>> _sendMedia(
     resultIds.addAll(msg.map((e) => e.photo!.first.fileId));
   }
 
-  if (caption != null) {
-    await ctx.api.sendMessage(chatId, caption, replyMarkup: shareButton);
-  }
+  if (caption != null) await ctx.api.sendMessage(chatId, caption);
 
   return resultIds;
 }

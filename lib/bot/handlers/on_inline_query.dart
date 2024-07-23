@@ -37,12 +37,14 @@ Future<void> onInlineQuery(TgContext ctx) async {
       photoFileId: media.fileIds.first,
       id: 'result',
       title: title,
+      replyMarkup: shareButton(url),
     );
   } else {
     result = tg.InlineQueryResultCachedVideo(
       videoFileId: media.fileIds.first,
       id: 'result',
       title: title,
+      replyMarkup: shareButton(url),
     );
   }
 
