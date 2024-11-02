@@ -4,3 +4,4 @@ services:
       context: .
     volumes:
       - ./storage:/app/storage
+    restart: always
