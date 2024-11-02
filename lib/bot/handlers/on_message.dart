@@ -15,7 +15,8 @@ Future<void> onMessage(TgContext ctx) async {
     await ctx.react('👍');
     await handleUrl(ctx, url: text, chat: ctx.chat!.getId(), caption: caption);
     await ctx.deleteMessage();
-  } catch (e) {
+  } catch (e, s) {
+    ctx.logger.error("Error while handling message", e, s);
     await ctx.react('👍');
     await ctx.reply(ctx.t(user).probablyUnsupportedUrl);
     await ctx.react('💔');

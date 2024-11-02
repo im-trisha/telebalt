@@ -18,7 +18,8 @@ class MediaResponse with _$MediaResponse {
     String? url,
     @JsonKey(defaultValue: PickerType.none) required PickerType pickerType,
     @JsonKey(defaultValue: []) required List<Picker> picker,
-    String? audio,
+    // dynamic because this seems to be bool sometimes, even if it should be String?
+    dynamic audio,
     String? text,
   }) = _MediaResponse;
 
