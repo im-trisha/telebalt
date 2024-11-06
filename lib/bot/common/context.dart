@@ -1,7 +1,9 @@
+import 'package:riverpod/riverpod.dart';
 import 'package:talker/talker.dart';
 import 'package:telebalt/consts.dart';
 import 'package:telebalt/i18n/strings.g.dart';
 import 'package:telebalt/models/models.dart';
+import 'package:telebalt/providers/providers.dart';
 import 'package:telebalt/services/local/database/database.dart';
 import 'package:telebalt/services/network/network.dart';
 import 'package:televerse/televerse.dart';
@@ -9,41 +11,32 @@ import 'package:televerse/televerse.dart';
 final _translations = AppLocale.values.asNameMap();
 
 class TgContext extends Context {
-  final Settings settings;
-  final Database db;
-  final Talker logger;
-  final CobaltService cobalt;
+  final ProviderContainer container;
+  late final UsersDAO users;
+  late final MediaDAO media;
 
-  final UsersDAO users;
-  final MediaDAO media;
+  Settings get settings => container.read(settingsProvider);
+  Database get db => container.read(databaseProvider);
+  Talker get logger => container.read(loggerProvider);
+  CobaltService get cobalt => container.read(cobaltServiceProvider);
 
   TgContext({
     required super.api,
     required super.me,
     required super.update,
-    required this.settings,
-    required this.db,
-    required this.logger,
-    required this.cobalt,
-  })  : media = MediaDAO(db),
-        users = UsersDAO(db);
-
+    required this.container,
+  }) {
+    media = MediaDAO(db);
+    users = UsersDAO(db);
+  }
   // Static method that returns ContextConstructor
-  static ContextConstructor<TgContext> create(
-    Settings settings,
-    Database db,
-    Talker logger,
-    CobaltService cobalt,
-  ) {
+  static ContextConstructor<TgContext> create(ProviderContainer container) {
     return ({required api, required me, required update}) async {
       return TgContext(
         api: api,
         me: me,
         update: update,
-        settings: settings,
-        db: db,
-        logger: logger,
-        cobalt: cobalt,
+        container: container,
       );
     };
   }

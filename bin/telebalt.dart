@@ -1,37 +1,14 @@
-import 'package:dart_dotenv/dart_dotenv.dart';
-import 'package:dio/dio.dart';
-import 'package:talker/talker.dart';
+import 'package:riverpod/riverpod.dart';
 import 'package:telebalt/bot/common/context.dart';
 import 'package:telebalt/bot/handlers.dart';
 import 'package:telebalt/bot/middlewares.dart';
-import 'package:telebalt/models/models.dart';
-import 'package:telebalt/services/local/database/database.dart';
-import 'package:telebalt/services/network/network.dart';
-import 'package:televerse/televerse.dart';
+import 'package:telebalt/providers/providers.dart';
 
 void main(List<String> args) async {
-  final settings = Settings.fromJson(DotEnv().getDotEnv());
+  final container = ProviderContainer();
+  final bot = container.read(botProvider);
 
-  final customUrl = Uri.tryParse(settings.apiUrl ?? '')?.toString();
-  final bot = Bot<TgContext>(
-    settings.botToken,
-    baseURL: customUrl ?? RawAPI.defaultBase,
-  );
-
-  final talker = Talker(settings: TalkerSettings(useHistory: false));
-  final founderId = int.tryParse(settings.adminId);
-  if (founderId == null) {
-    talker.error("ADMIN_ID must be an integer.");
-    return;
-  }
-
-  final database = Database(settings.storagePath, founderId);
-  final cobalt = CobaltService(Dio(BaseOptions(
-    baseUrl: settings.cobaltUrl,
-    validateStatus: (status) => (status ?? 0) < 500,
-  )));
-
-  bot.contextBuilder(TgContext.create(settings, database, talker, cobalt));
+  bot.contextBuilder(TgContext.create(container));
 
   bot.use(SaveUser());
 
@@ -53,6 +30,7 @@ void main(List<String> args) async {
 
   bot.onText(onMessage);
 
+  final talker = container.read(loggerProvider);
   bot.onStop(() => talker.info("The bot has been stopped."));
 
   talker.info("Starting bot...");
@@ -60,5 +38,5 @@ void main(List<String> args) async {
   await bot.start();
 
   talker.info("Tidying resources...");
-  await database.close();
+  container.dispose();
 }
