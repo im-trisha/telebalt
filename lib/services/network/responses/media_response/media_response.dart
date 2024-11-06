@@ -1,51 +1,88 @@
 part of '../../network.dart';
 
-@freezed
-class Picker with _$Picker {
-  const factory Picker({
-    required String url,
-    @JsonKey(name: 'thumb') String? thumbnail,
-    String? type,
-  }) = _Picker;
-
-  factory Picker.fromJson(Map<String, Object?> json) => _$PickerFromJson(json);
-}
-
-@freezed
-class MediaResponse with _$MediaResponse {
+@Freezed(unionKey: 'status')
+sealed class MediaResponse with _$MediaResponse {
   const factory MediaResponse({
-    required MediaStatus status,
-    String? url,
-    @JsonKey(defaultValue: PickerType.none) required PickerType pickerType,
-    @JsonKey(defaultValue: []) required List<Picker> picker,
-    // dynamic because this seems to be bool sometimes, even if it should be String?
-    dynamic audio,
-    String? text,
+    required ResponseStatus status,
   }) = _MediaResponse;
 
-  factory MediaResponse.fromJson(Map<String, Object?> json) =>
+  @FreezedUnionValue('tunnel')
+  @FreezedUnionValue('redirect')
+  const factory MediaResponse.tunnelRedirect({
+    required ResponseStatus status,
+    required String url,
+    required String filename,
+  }) = RedirectResponse;
+
+  @FreezedUnionValue('picker')
+  const factory MediaResponse.picker({
+    required ResponseStatus status,
+    String? audio,
+    String? audioFilename,
+    required List<PickerItem> picker,
+  }) = PickerResponse;
+
+  @FreezedUnionValue('error')
+  const factory MediaResponse.error({
+    required ResponseStatus status,
+    required ErrorDetail error,
+  }) = ErrorResponse;
+
+  factory MediaResponse.fromJson(Map<String, dynamic> json) =>
       _$MediaResponseFromJson(json);
 }
 
-@JsonEnum(valueField: 'status')
-enum MediaStatus {
-  success("success"),
-  error("error"),
-  redirect("redirect"),
-  stream("stream"),
-  limited("rate-limit"),
-  picker("picker");
+@freezed
+class PickerItem with _$PickerItem {
+  const factory PickerItem({
+    required String type,
+    required String url,
+    String? thumb,
+  }) = _PickerItem;
 
-  const MediaStatus(this.status);
+  factory PickerItem.fromJson(Map<String, dynamic> json) =>
+      _$PickerItemFromJson(json);
+}
+
+@freezed
+class ErrorDetail with _$ErrorDetail {
+  const factory ErrorDetail({
+    required String code,
+    ErrorContext? context,
+  }) = _ErrorDetail;
+
+  factory ErrorDetail.fromJson(Map<String, dynamic> json) =>
+      _$ErrorDetailFromJson(json);
+}
+
+@freezed
+class ErrorContext with _$ErrorContext {
+  const factory ErrorContext({
+    String? service,
+    int? limit,
+  }) = _ErrorContext;
+
+  factory ErrorContext.fromJson(Map<String, dynamic> json) =>
+      _$ErrorContextFromJson(json);
+}
+
+@JsonEnum(valueField: 'status')
+enum ResponseStatus {
+  error("error"),
+  picker("picker"),
+  redirect("redirect"),
+  tunnel("tunnel");
+
+  const ResponseStatus(this.status);
   final String status;
 }
 
-@JsonEnum(valueField: 'type')
-enum PickerType {
-  various("various"),
-  images("images"),
-  none(null);
+@JsonEnum(valueField: 'status')
+enum PickerStatus {
+  photo("photo"),
+  video("video"),
+  gif("gif");
 
-  const PickerType(this.type);
-  final String? type;
+  const PickerStatus(this.status);
+  final String status;
 }

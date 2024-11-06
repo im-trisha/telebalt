@@ -3,7 +3,6 @@ import 'dart:math';
 import 'package:dio/dio.dart' hide Headers;
 import 'package:path/path.dart' as p;
 import 'package:retrofit/retrofit.dart';
-import 'package:telebalt/consts.dart';
 import 'package:telebalt/services/network/network.dart';
 
 part 'cobalt.g.dart';
@@ -12,10 +11,10 @@ part 'cobalt.g.dart';
 abstract class CobaltService {
   factory CobaltService(Dio dio, {String baseUrl}) = _CobaltService;
 
-  @GET('/api/serverInfo')
+  @GET('/')
   Future<ServerInfo> serverInfo();
 
-  @POST('/api/json')
+  @POST('/')
   @Headers({
     'Accept': 'application/json',
     'Content-Type': 'application/json',
@@ -23,35 +22,36 @@ abstract class CobaltService {
   Future<MediaResponse> getMedia(@Body() MediaRequest request);
 }
 
-const _chars = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
+const _c = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
+final _r = Random.secure();
 
 extension Download on CobaltService {
-  String randomId([int len = 32]) {
-    var r = Random();
-    return List.generate(len, (index) => _chars[r.nextInt(_chars.length)])
-        .join();
+  String _randId([int len = 32]) {
+    return List.generate(len, (index) => _c[_r.nextInt(_c.length)]).join();
   }
 
   Future<DownloadedMediaResponse> download(
-    MediaResponse media, {
-    required String savePath,
-  }) async {
-    final single = media.status != MediaStatus.picker;
-    final urls =
-        single ? [media.url!] : media.picker.map((e) => e.url).toList();
-    final fileIds = List.generate(urls.length, (_) => randomId());
+    MediaResponse media,
+    String savePath,
+  ) async {
+    final (List<String> fileIds, urls, filename) = switch (media) {
+      RedirectResponse redirect => (
+          [_randId()],
+          [redirect.url],
+          redirect.filename
+        ),
+      PickerResponse picker => (
+          List.generate(picker.picker.length, (_) => _randId()),
+          picker.picker.map((e) => e.url).toList(),
+          'multiples'
+        ),
+      _ => throw Exception('Unsupported media type'),
+    };
 
-    late Response lastRes;
-    for (int i = 0; i < urls.length; ++i) {
-      lastRes = await Dio().download(urls[i], p.join(savePath, fileIds[i]));
+    for (int i = 0; i < urls.length; i++) {
+      await Dio().download(urls[i], p.join(savePath, fileIds[i]));
     }
 
-    final header = (lastRes.headers['content-disposition'] ?? [''])[0];
-    final filename = K.filenameRegex.firstMatch(header);
-
-    return DownloadedMediaResponse(
-      ids: fileIds,
-      filename: filename?.group(1) ?? savePath,
-    );
+    return DownloadedMediaResponse(ids: fileIds, filename: filename);
   }
 }

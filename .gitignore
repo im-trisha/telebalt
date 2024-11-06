@@ -23,3 +23,5 @@ storage/*
 
 *.dll
 *.so
+
+cookies.json

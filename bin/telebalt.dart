@@ -26,7 +26,10 @@ void main(List<String> args) async {
   }
 
   final database = Database(settings.storagePath, founderId);
-  final cobalt = CobaltService(Dio(BaseOptions(baseUrl: settings.cobaltUrl)));
+  final cobalt = CobaltService(Dio(BaseOptions(
+    baseUrl: settings.cobaltUrl,
+    validateStatus: (status) => (status ?? 0) < 500,
+  )));
 
   bot.contextBuilder(TgContext.create(settings, database, talker, cobalt));
 

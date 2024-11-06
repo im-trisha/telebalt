@@ -1,14 +1,37 @@
 part of '../../network.dart';
 
-@JsonEnum(valueField: 'pattern')
-enum FilenamePattern {
+@freezed
+class MediaRequest with _$MediaRequest {
+  const factory MediaRequest({
+    required String url,
+    @Default(VideoQuality.max) VideoQuality videoQuality,
+    @Default(AudioFormat.best) AudioFormat audioFormat,
+    @Default(AudioBitrate.b128) AudioBitrate audioBitrate,
+    @Default(FilenameStyle.nerdy) FilenameStyle filenameStyle,
+    @Default(DownloadMode.auto) DownloadMode downloadMode,
+    @Default(VideoCodec.h264) VideoCodec? youtubeVideoCodec,
+    @JsonKey(defaultValue: null, includeIfNull: false) String? youtubeDubLang,
+    @Default(false) bool? alwaysProxy,
+    @Default(false) bool? disableMetadata,
+    @Default(false) bool? tiktokFullAudio,
+    @Default(false) bool? tiktokH265,
+    @Default(true) bool? twitterGif,
+    @Default(false) bool? youtubeHLS,
+  }) = _MediaRequest;
+
+  factory MediaRequest.fromJson(Map<String, Object?> json) =>
+      _$MediaRequestFromJson(json);
+}
+
+@JsonEnum(valueField: 'style')
+enum FilenameStyle {
   classic("classic"),
   pretty("pretty"),
   basic("basic"),
   nerdy("nerdy");
 
-  const FilenamePattern(this.pattern);
-  final String pattern;
+  const FilenameStyle(this.style);
+  final String style;
 }
 
 @JsonEnum(valueField: 'codec')
@@ -49,23 +72,25 @@ enum AudioFormat {
   final String format;
 }
 
-@freezed
-class MediaRequest with _$MediaRequest {
-  const factory MediaRequest({
-    required String url,
-    @Default(VideoQuality.max) VideoQuality vQuality,
-    @Default(AudioFormat.best) AudioFormat aFormat,
-    @Default(FilenamePattern.nerdy) FilenamePattern filenamePattern,
-    @Default(true) bool? tiktokH265,
-    @Default(VideoCodec.h264) VideoCodec? vCodec,
-    @Default(false) bool? isAudioOnly,
-    @Default(false) bool? isTTFullAudio,
-    @Default(false) bool? isAudioMuted,
-    @Default(false) bool? dubLang,
-    @Default(false) bool? disableMetadata,
-    @Default(false) bool? twitterGif,
-  }) = _MediaRequest;
+@JsonEnum(valueField: 'bitrate')
+enum AudioBitrate {
+  b320("320"),
+  b256("256"),
+  b128("128"),
+  b96("96"),
+  b64("64"),
+  b8("8");
 
-  factory MediaRequest.fromJson(Map<String, Object?> json) =>
-      _$MediaRequestFromJson(json);
+  const AudioBitrate(this.bitrate);
+  final String bitrate;
+}
+
+@JsonEnum(valueField: 'mode')
+enum DownloadMode {
+  auto("auto"),
+  audio("b256"),
+  mute("b128");
+
+  const DownloadMode(this.mode);
+  final String mode;
 }

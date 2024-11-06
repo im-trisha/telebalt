@@ -39,16 +39,13 @@ Future<Media> handleUrl(
 
   if (!isInline) await ctx.replyWithChatAction(ChatAction.uploadDocument);
 
-  final downloadRes = await ctx.cobalt.download(
-    res,
-    savePath: ctx.settings.storagePath,
-  );
+  final downloadRes = await ctx.cobalt.download(res, ctx.settings.storagePath);
 
   final fileIds = await _sendMedia(
     ctx,
     caption: caption,
     mediaName: downloadRes.filename,
-    isPicker: res.status == MediaStatus.picker,
+    isPicker: res.status == ResponseStatus.picker,
     mediaIds: downloadRes.ids,
     isLocal: true,
     chatId: chat,
@@ -59,7 +56,7 @@ Future<Media> handleUrl(
     url: url,
     fileIds: fileIds,
     videoIds: downloadRes.ids,
-    isPicker: res.status == MediaStatus.picker,
+    isPicker: res.status == ResponseStatus.picker,
     name: downloadRes.filename,
   );
 }
