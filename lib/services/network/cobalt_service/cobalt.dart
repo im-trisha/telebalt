@@ -35,14 +35,11 @@ extension Download on CobaltService {
     String savePath,
   ) async {
     final (List<String> fileIds, urls, filename) = switch (media) {
-      RedirectResponse redirect => (
-          [_randId()],
-          [redirect.url],
-          redirect.filename
-        ),
-      PickerResponse picker => (
-          List.generate(picker.picker.length, (_) => _randId()),
-          picker.picker.map((e) => e.url).toList(),
+      TunnelResponse res => ([_randId()], [res.url], res.filename),
+      RedirectResponse res => ([_randId()], [res.url], res.filename),
+      PickerResponse res => (
+          List.generate(res.picker.length, (_) => _randId()),
+          res.picker.map((e) => e.url).toList(),
           'multiples'
         ),
       _ => throw Exception('Unsupported media type'),

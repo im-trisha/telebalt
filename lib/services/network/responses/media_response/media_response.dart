@@ -7,8 +7,15 @@ sealed class MediaResponse with _$MediaResponse {
   }) = _MediaResponse;
 
   @FreezedUnionValue('tunnel')
+  const factory MediaResponse.tunnel({
+    required ResponseStatus status,
+    required String url,
+    required String filename,
+  }) = TunnelResponse;
+
+  // Seems like we can't just use the same constructor for two different UnionValue
   @FreezedUnionValue('redirect')
-  const factory MediaResponse.tunnelRedirect({
+  const factory MediaResponse.redirect({
     required ResponseStatus status,
     required String url,
     required String filename,
