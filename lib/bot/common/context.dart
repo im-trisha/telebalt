@@ -61,7 +61,7 @@ class TgContext extends Context {
     final i18n = t(await user());
 
     if (args.isEmpty) {
-      await reply(i18n.notEnoughArgs);
+      await reply(i18n.errors.notEnoughArgs);
       return null;
     }
 
@@ -71,7 +71,7 @@ class TgContext extends Context {
         : await users.read(maybeId);
 
     if (target == null) {
-      await reply(i18n.unknownUsername);
+      await reply(i18n.errors.unknownUsername);
       return null;
     }
 

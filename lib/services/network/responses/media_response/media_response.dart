@@ -2,10 +2,6 @@ part of '../../network.dart';
 
 @Freezed(unionKey: 'status')
 sealed class MediaResponse with _$MediaResponse {
-  const factory MediaResponse({
-    required ResponseStatus status,
-  }) = _MediaResponse;
-
   @FreezedUnionValue('tunnel')
   const factory MediaResponse.tunnel({
     required ResponseStatus status,

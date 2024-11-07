@@ -5,7 +5,7 @@ Future<void> nickname(TgContext ctx) async {
   if (user == null || (!user.isAdmin && !user.isAuthorized)) return;
 
   if (ctx.args.length < 2) {
-    await ctx.reply(ctx.t(user).notEnoughArgs);
+    await ctx.reply(ctx.t(user).errors.notEnoughArgs);
     return;
   }
 

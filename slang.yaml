@@ -1,4 +1,3 @@
 flutter_integration: false
 key_case: camel
-key_map_case: camel
 param_case: camel

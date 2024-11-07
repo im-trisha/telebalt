@@ -1,9 +1,48 @@
 {
-  "not_enough_args": "Non abbastanza argomenti",
-  "unknown_username": "Username sconosciuto, assicurati che abbia inviato un messaggio dopo il cambio di username",
-  "picker_unsupported": "Formato non supportato",
-  "picker_unsupported_details": "Il formato del video non è supportato.\nHai probabilmente provato ad inviare un url di Tiktok contenente più di un immagine, non è possibile inviarli inline per delle limitazioni di telegram, controlla i messaggi privati",
-  "probably_unsupported_url": "C'è stato un errore nella gestione dell'url, probabilmente il link non è supportato",
+  "errors": {
+    "generic": "Il bot ha avuto un problema mentre gestiva l'url. L'errore viene probabilmente dal bot e non dalle api.",
+    "not_enough_args": "Non abbastanza argomenti",
+    "unknown_username": "Username sconosciuto, assicurati che abbia inviato un messaggio dopo il cambio di username",
+    "inline": {
+      "unsupported": "Formato non supportato",
+      "unsupported_details": "Il formato del video non è supportato.\nHai probabilmente provato ad inviare un url di Tiktok contenente più di un immagine, non è possibile inviarli inline per delle limitazioni di telegram, controlla i messaggi privati"
+    },
+    "api(map)": {
+      "auth.jwt.missing": "Impossibile confermare se non sei un robot perché il server di elaborazione non ha ricevuto il token di accesso umano. riprova tra qualche secondo o ricarica la pagina!",
+      "auth.jwt.invalid": "Non è stato possibile confermare che non sei un robot perché il token di accesso umano è scaduto e non è stato rinnovato. riprova tra qualche secondo o ricarica la pagina!",
+      "auth.turnstile.missing": "Impossibile confermare se non sei un robot perché il server di elaborazione non ha ricevuto il token di accesso umano. riprova tra qualche secondo o ricarica la pagina!",
+      "auth.turnstile.invalid": "Impossibile confermare che non sei un robot perché il token di accesso umano è scaduto e non è stato rinnovato. riprova tra qualche secondo o ricarica la pagina!",
+      "unreachable": "Impossibile connettersi al server di elaborazione. controllare la connessione internet e riprovare",
+      "timed_out": "Il server di elaborazione ha impiegato troppo tempo per rispondere. potrebbe essere sovraccarico al momento, riprovare tra qualche secondo!",
+      "rate_exceeded": "Le richieste sono troppe, riprovare tra {limit} secondi!",
+      "capacity": "Cobalt è al limite della capacità e non può elaborare la tua richiesta al momento. riprova tra qualche secondo. se ancora non funziona, faccelo sapere e cercheremo di aiutarti!",
+      "generic": "Qualcosa è andato storto e non ho potuto ottenere nulla per te. riprova tra qualche secondo, ma se il problema persiste, facci sapere e cercheremo di aiutarti!",
+      "unknown_response": "Impossibile analizzare la risposta dal server. questo potrebbe essere causato da un errore di versione. sei sicuro di avere l'ultima versione di cobalt?",
+      "service.unsupported": "Questo servizio non è ancora supportato. hai incollato il link giusto?",
+      "service.disabled": "Questo servizio è supportato da cobalt, ma è disabilitato su questa istanza. prova un link da un altro servizio!",
+      "link.invalid": "Il tuo link non è valido o questo servizio non è ancora supportato. hai incollato il link giusto?",
+      "link.unsupported": "{service} è supportato, ma non sono riuscito a riconoscere il tuo link. hai incollato quello giusto?",
+      "fetch.fail": "Qualcosa è andato storto durante il recupero delle informazioni da {service} e non sono riuscito a trovare nulla per te. sei sicuro che il tuo link funzioni? se lo fa e vedi ancora questo errore, faccelo sapere e cercheremo di aiutarti!",
+      "fetch.critical": "Il modulo {service} ha restituito un errore che non riconosco. riprova tra qualche secondo, ma se il problema persiste, facci sapere!",
+      "fetch.empty": "Non è stato possibile trovare alcun supporto da scaricare per te. sei sicuro di aver incollato il link giusto?",
+      "fetch.rate": "Il server di elaborazione cobalt è stato limitato dalla {service}  riprova tra qualche secondo!",
+      "fetch.short_link": "Impossibile ottenere informazioni sul link dal link breve. sei sicuro che funzioni? se funziona e ricevi comunque questo errore, faccelo sapere e cercheremo di aiutarti!",
+      "content.too_long": "Il media che hai richiesto è troppo lungo. il limite di durata attuale è {limit} minuti. prova invece qualcosa di più breve!",
+      "content.video.unavailable": "Non riesco ad accedere a questo video. potrebbe essere limitato da {service}. hai incollato il link giusto?",
+      "content.video.live": "Questo video è attualmente in diretta, quindi non posso ancora scaricarlo. aspetta che il live stream finisca e poi riprova!",
+      "content.video.private": "Questo video è privato, quindi non posso accedervi. cambiatene la visibilità o provate con un altro!",
+      "content.video.age": "Questo video è vietato all'età, quindi non posso accedervi in modo anonimo. provane un altro!",
+      "content.video.region": "Questo video è bloccato per regione e il server di elaborazione si trova in una località diversa. provane un altro!",
+      "content.post.unavailable": "Non è stato possibile trovare nulla su questo post. la sua visibilità potrebbe essere limitata o potrebbe non esistere affatto. assicuratevi che il vostro link funzioni e riprovate tra qualche secondo!",
+      "content.post.private": "Questo post proviene da un account privato, quindi non posso accedervi. hai incollato il link giusto?",
+      "content.post.age": "Questo post ha un'età limitata, quindi non posso accedervi anonimamente. hai incollato il link giusto?",
+      "youtube.codec": "Youtube non ha restituito nulla con il tuo codec video preferito. provane un altro nelle impostazioni!",
+      "youtube.decipher": "Youtube ha aggiornato il suo algoritmo di decifrazione e non ho potuto estrarre le informazioni sul video.Riprova tra qualche secondo, ma se il problema persiste, contattaci per il supporto",
+      "youtube.login": "Non è stato possibile ottenere questo video perché youtube mi ha etichettato come bot. questo è potenzialmente causato dal fatto che l'istanza di elaborazione non ha alcun token di account attivo. riprova tra qualche secondo, ma se ancora non funziona, segnala questo errore al proprietario dell'istanza!",
+      "youtube.token_expired": "Non è stato possibile ottenere questo video perché il token di youtube è scaduto e non ho potuto aggiornarlo. riprova tra qualche secondo, ma se ancora non funziona, segnala questo errore al proprietario dell'istanza!",
+      "youtube.no_hls_streams": "Impossibile trovare flussi HLS corrispondenti. provare con altre impostazioni!"
+    }
+  },
   "commands": {
     "authorize": {
       "success": "L'utente è stato autorizzato con successo"

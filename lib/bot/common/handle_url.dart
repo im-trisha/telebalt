@@ -36,6 +36,7 @@ Future<Media> handleUrl(
   }
 
   final res = await ctx.cobalt.getMedia(MediaRequest(url: url));
+  if (res is ErrorResponse) throw res;
 
   if (!isInline) await ctx.replyWithChatAction(ChatAction.uploadDocument);
 

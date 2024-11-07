@@ -7,8 +7,8 @@ Future<void> onInlineQuery(TgContext ctx) async {
   final url = ctx.inlineQuery!.query.trim();
   if (url.isEmpty) return;
 
-  var title = ctx.t(user).pickerUnsupported;
-  final content = ctx.t(user).pickerUnsupportedDetails;
+  var title = ctx.t(user).errors.inline.unsupported;
+  final content = ctx.t(user).errors.inline.unsupportedDetails;
 
   late final Media media;
   try {

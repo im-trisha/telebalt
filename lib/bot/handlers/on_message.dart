@@ -15,10 +15,12 @@ Future<void> onMessage(TgContext ctx) async {
     await ctx.react('👍');
     await handleUrl(ctx, url: text, chat: ctx.chat!.getId(), caption: caption);
     await ctx.deleteMessage();
-  } catch (e, s) {
-    ctx.logger.error("Error while handling message", e, s);
-    await ctx.react('👍');
-    await ctx.reply(ctx.t(user).probablyUnsupportedUrl);
+  } on ErrorResponse catch (e) {
+    final code = e.error.code.split('error.api.').last;
     await ctx.react('💔');
+    await ctx.reply(ctx.t(user).errors.api[code] ?? code);
+  } catch (e) {
+    await ctx.react('💔');
+    await ctx.reply(ctx.t(user).errors.generic);
   }
 }

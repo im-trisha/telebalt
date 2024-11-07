@@ -42,7 +42,9 @@ extension Download on CobaltService {
           res.picker.map((e) => e.url).toList(),
           'multiples'
         ),
-      _ => throw Exception('Unsupported media type'),
+      ErrorResponse r => throw Exception(
+          'Error while handling response: ${r.toJson()}',
+        ),
     };
 
     for (int i = 0; i < urls.length; i++) {
