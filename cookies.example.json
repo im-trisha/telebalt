@@ -1,0 +1,15 @@
+{
+    "instagram": [
+        "mid=<replace_this>; ig_did=<replace_this>; csrftoken=<replace_this>; ds_user_id=<replace_this>; sessionid=<replace_this>"
+    ],
+    "instagram_bearer": [],
+    "reddit": [
+        "client_id=<replace_this>; client_secret=<replace_this>; refresh_token=<replace_this>"
+    ],
+    "twitter": [
+        "auth_token=<replace_this>; ct0=<replace_this>"
+    ],
+    "youtube_oauth": [
+        "<replace_this>"
+    ]
+}
