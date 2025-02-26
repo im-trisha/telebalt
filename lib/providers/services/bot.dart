@@ -5,7 +5,7 @@ final botProvider = Provider<Bot<TgContext>>((ref) {
   final botApi = Uri.tryParse(maybeApi)?.toString() ?? RawAPI.defaultBase;
   final botToken = ref.read(settingsProvider).botToken;
 
-  final bot = Bot<TgContext>(
+  final bot = Bot<TgContext>.local(
     botToken,
     baseURL: botApi,
     fetcher: LongPolling(allowedUpdates: K.allowedUpdates),

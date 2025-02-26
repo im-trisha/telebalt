@@ -1,7 +1,7 @@
 part of '../../network.dart';
 
 @freezed
-class ServerInfo with _$ServerInfo {
+sealed class ServerInfo with _$ServerInfo {
   const factory ServerInfo({
     required CobaltInfo cobalt,
     required GitInfo git,
@@ -12,7 +12,7 @@ class ServerInfo with _$ServerInfo {
 }
 
 @freezed
-class CobaltInfo with _$CobaltInfo {
+sealed class CobaltInfo with _$CobaltInfo {
   const factory CobaltInfo({
     required String version,
     required String url,
@@ -26,7 +26,7 @@ class CobaltInfo with _$CobaltInfo {
 }
 
 @freezed
-class GitInfo with _$GitInfo {
+sealed class GitInfo with _$GitInfo {
   const factory GitInfo({
     required String commit,
     required String branch,

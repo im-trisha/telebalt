@@ -36,7 +36,7 @@ sealed class MediaResponse with _$MediaResponse {
 }
 
 @freezed
-class PickerItem with _$PickerItem {
+sealed class PickerItem with _$PickerItem {
   const factory PickerItem({
     required String type,
     required String url,
@@ -48,7 +48,7 @@ class PickerItem with _$PickerItem {
 }
 
 @freezed
-class ErrorDetail with _$ErrorDetail {
+sealed class ErrorDetail with _$ErrorDetail {
   const factory ErrorDetail({
     required String code,
     ErrorContext? context,
@@ -59,7 +59,7 @@ class ErrorDetail with _$ErrorDetail {
 }
 
 @freezed
-class ErrorContext with _$ErrorContext {
+sealed class ErrorContext with _$ErrorContext {
   const factory ErrorContext({
     String? service,
     int? limit,

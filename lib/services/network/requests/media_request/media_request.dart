@@ -1,7 +1,7 @@
 part of '../../network.dart';
 
 @freezed
-class MediaRequest with _$MediaRequest {
+sealed class MediaRequest with _$MediaRequest {
   const factory MediaRequest({
     required String url,
     @Default(VideoQuality.max) VideoQuality videoQuality,

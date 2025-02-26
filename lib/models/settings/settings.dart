@@ -1,7 +1,7 @@
 part of '../models.dart';
 
 @freezed
-class Settings with _$Settings {
+sealed class Settings with _$Settings {
   const factory Settings({
     @JsonKey(name: 'TOKEN') required String botToken,
     @JsonKey(name: 'COBALT_URL') required String cobaltUrl,
