@@ -1,7 +1,8 @@
 part of '../handlers.dart';
 
 String _mapChat(Chat u) {
-  return '${u.id}: ${u.title ?? u.firstName ?? 'Idk'} (${u.username ?? 'No username'})';
+  final authorized = u.isAuthorized ? '✅' : '❌';
+  return '$authorized ${u.id}: ${u.title ?? u.firstName ?? 'Idk'} (${u.username ?? 'No username'})';
 }
 
 Future<void> chats(TgContext ctx) async {
@@ -35,6 +36,6 @@ Future<void> unauthorizeChat(TgContext ctx) async {
   final target = await ctx.targetChat();
   if (target == null) return;
 
-  await ctx.users.patch(target.id, isAuthorized: false);
+  await ctx.chats.patch(target.id, isAuthorized: false);
   await ctx.reply(ctx.t(user).commands.unauthorize.chatSuccess);
 }

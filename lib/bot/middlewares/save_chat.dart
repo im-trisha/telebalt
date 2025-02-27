@@ -16,7 +16,6 @@ class SaveChat implements Middleware<TgContext> {
       lastName: chat.lastName,
       username: chat.username,
       isForum: chat.isForum,
-      isAuthorized: false,
     );
 
     await next();
