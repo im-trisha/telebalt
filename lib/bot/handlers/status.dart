@@ -7,7 +7,11 @@ Future<void> status(TgContext ctx) async {
   final target = await ctx.target();
   if (target == null) return;
 
-  final text = ctx.t(user).commands.status.success(
+  final text = ctx
+      .t(user)
+      .commands
+      .status
+      .success(
         id: target.id,
         firstName: target.firstName,
         lastName: target.lastName ?? '???',

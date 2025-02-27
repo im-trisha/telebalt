@@ -2,12 +2,20 @@
   "errors": {
     "generic": "The bot had a problem while handling the url. Its probably an error in the bot and not with the api.",
     "not_enough_args": "Not enough arguments",
-    "unknown_username": "The username is unknown. Please make sure the user has at least sent a message with the new username",
+    "unknown_user": "The user is unknown. Please make sure the user has at least sent a message with the new username",
+    "unknown_chat": "The chat is unknown",
     "inline": {
       "unsupported": "Format unsupported",
       "unsupported_details": "The video format is not supported. You probably tried sending a Tiktok url with more than one image, its not possible to send them inline with telegram. Check your private messages"
     },
     "api(map)": {
+      "auth.key.missing": "An access key is required to use this processing instance but it's missing. add it in instance settings!",
+      "auth.key.not_api_key": "An access key is required to use this processing instance but it's missing. add it in instance settings!",
+      "auth.key.invalid": "The access key is invalid. Reset it in instance settings and use a proper one!",
+      "auth.key.not_found": "The access key you used couldn't be found. Are you sure this instance has your key?",
+      "auth.key.invalid_ip": "Your ip address couldn't be parsed. Something went very wrong. Report this issue!",
+      "auth.key.ip_not_allowed": "Your ip address is not allowed to use this access key. Use a different instance or network!",
+      "auth.key.ua_not_allowed": "Your user agent is not allowed to use this access key. Use a different client or device!",
       "auth.jwt.missing": "Couldn't confirm whether you're not a robot because the processing server didn't receive the human access token. try again in a few seconds or reload the page!",
       "auth.jwt.invalid": "Couldn't confirm whether you're not a robot because your human access token expired and wasn't renewed. try again in a few seconds or reload the page!",
       "auth.turnstile.missing": "Couldn't confirm whether you're not a robot because the processing server didn't receive the human access token. try again in a few seconds or reload the page!",
@@ -18,6 +26,8 @@
       "capacity": "Cobalt is at capacity and can't process your request at the moment. try again in a few seconds. if it still doesn't work, let us know and we'll try to help!",
       "generic": "Something went wrong and i couldn't get anything for you. try again in a few seconds, but if issue sticks, let us know and we'll try to help!",
       "unknown_response": "Couldn't parse the response from the server. this could be caused by a version mismatch. are you sure you're on the latest version of cobalt?",
+      "invalid_body": "Couldn't send the request to the processing instance. This is probably caused by the web app being out of date. reload the app and try again!",
+      "service.audio_not_supported": "This service doesn't support audio extraction. Try a link from another service!",
       "service.unsupported": "This service is not supported yet. have you pasted the right link?",
       "service.disabled": "This service is supported by cobalt, but it's disabled on this instance. try a link from another service!",
       "link.invalid": "Your link is invalid or this service is not supported yet. have you pasted the right link?",
@@ -36,6 +46,11 @@
       "content.post.unavailable": "Couldn't find anything about this post. its visibility may be limited or it may not exist at all. make sure your link works and try again in a few seconds!",
       "content.post.private": "This post is from a private account, so i can't access it. have you pasted the right link?",
       "content.post.age": "This post is age-restricted, so i can't access it anonymously. have you pasted the right link?",
+      "content.region": "This content is region locked, and the processing instance is in a different location. Try a different link!",
+      "content.paid": "This content requires purchase. Cobalt can't download paid content. Try a different link!",
+      "youtube.no_matching_format": "Youtube non ha restituito una combinazione di formato video + audio valida, manca il video o l'audio. I formati di questo video potrebbero essere ricodificati da youtube o qualcosa è andato storto durante l'analisi. Prova ad abilitare l'opzione hls nelle impostazioni video!",
+      "youtube.api_error": "Youtube ha aggiornato qualcosa sulla sua api e non ho potuto ottenere alcuna informazione su questo video. Riprova tra qualche secondo, ma se il problema persiste, segnalalo!",
+      "youtube.temporary_disabled": "Il download da youtube è temporaneamente disabilitato a causa di restrizioni da parte di youtube. stiamo già cercando un modo per aggirarle.Ci scusiamo per l'inconveniente e stiamo facendo del nostro meglio per ripristinare questa funzionalità. Controllate i social di cobalt o github per aggiornamenti tempestivi!",
       "youtube.codec": "Youtube didn't return anything with your preferred video codec. try another one in settings!",
       "youtube.decipher": "Youtube updated its decipher algorithm and i couldn't extract the info about the video.\n\ntry again in a few seconds, but if issue sticks, contact us for support.",
       "youtube.login": "Couldn't get this video because youtube labeled me as a bot. this is potentially caused by the processing instance not having any active account tokens. try again in a few seconds, but if it still doesn't work, tell the instance owner about this error!",
@@ -43,12 +58,15 @@
       "youtube.no_hls_streams": "Couldn't find any matching HLS streams. try different settings!"
     }
   },
+  "unauthorized_chat": "I'm not authorized to stay here",
   "commands": {
     "authorize": {
-      "success": "The user has been authorized successfully"
+      "chatSuccess": "The chat has been authorized successfully",
+      "userSuccess": "The user has been authorized successfully"
     },
     "unauthorize": {
-      "success": "The user has been unauthorize successfully"
+      "chatSuccess": "The chat has been unauthorize successfully",
+      "userSuccess": "The user has been unauthorize successfully"
     },
     "promote": {
       "success": "The user has been promoted successfully"

@@ -49,10 +49,8 @@ sealed class PickerItem with _$PickerItem {
 
 @freezed
 sealed class ErrorDetail with _$ErrorDetail {
-  const factory ErrorDetail({
-    required String code,
-    ErrorContext? context,
-  }) = _ErrorDetail;
+  const factory ErrorDetail({required String code, ErrorContext? context}) =
+      _ErrorDetail;
 
   factory ErrorDetail.fromJson(Map<String, dynamic> json) =>
       _$ErrorDetailFromJson(json);
@@ -60,10 +58,7 @@ sealed class ErrorDetail with _$ErrorDetail {
 
 @freezed
 sealed class ErrorContext with _$ErrorContext {
-  const factory ErrorContext({
-    String? service,
-    int? limit,
-  }) = _ErrorContext;
+  const factory ErrorContext({String? service, int? limit}) = _ErrorContext;
 
   factory ErrorContext.fromJson(Map<String, dynamic> json) =>
       _$ErrorContextFromJson(json);

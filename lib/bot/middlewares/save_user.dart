@@ -2,10 +2,7 @@ part of '../middlewares.dart';
 
 class SaveUser implements Middleware<TgContext> {
   @override
-  Future<void> handle(
-    TgContext ctx,
-    NextFunction next,
-  ) async {
+  Future<void> handle(TgContext ctx, NextFunction next) async {
     final user = ctx.from;
     if (user != null) {
       await ctx.users.upsert(

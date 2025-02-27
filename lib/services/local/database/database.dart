@@ -5,8 +5,11 @@ import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
 import 'package:path/path.dart' as p;
 import 'package:telebalt/consts.dart';
+import 'package:televerse/televerse.dart';
 import 'misc.dart';
 
+part 'chats/chats_dao.dart';
+part 'chats/chats_table.dart';
 part 'media/media_dao.dart';
 part 'media/media_table.dart';
 part 'users/users_dao.dart';

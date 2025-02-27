@@ -9,7 +9,7 @@ services:
       - telebalt-net
 
   cobalt-api:
-    image: ghcr.io/imputnet/cobalt:10
+    image: ghcr.io/imputnet/cobalt:10.7.6
 
     init: true
     read_only: true

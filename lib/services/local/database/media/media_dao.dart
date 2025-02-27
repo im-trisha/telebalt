@@ -5,8 +5,8 @@ class MediaDAO extends DatabaseAccessor<Database> with _$MediaDAOMixin {
   MediaDAO(super.db);
 
   Future<Media?> read(String url) {
-    final query =
-        (db.select(db.cachedMedia)..where((tbl) => tbl.url.equals(url)));
+    final query = (db.select(db.cachedMedia)
+      ..where((tbl) => tbl.url.equals(url)));
     return query.getSingleOrNull();
   }
 
@@ -17,7 +17,9 @@ class MediaDAO extends DatabaseAccessor<Database> with _$MediaDAOMixin {
     required bool isPicker,
     required String name,
   }) {
-    return db.into(db.cachedMedia).insertReturning(
+    return db
+        .into(db.cachedMedia)
+        .insertReturning(
           CachedMediaCompanion(
             url: Value(url),
             videoIds: Value(videoIds),

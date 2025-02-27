@@ -14,6 +14,7 @@ class TgContext extends Context {
   final ProviderContainer container;
   late final UsersDAO users;
   late final MediaDAO media;
+  late final ChatsDAO chats;
 
   Settings get settings => container.read(settingsProvider);
   Database get db => container.read(databaseProvider);
@@ -28,16 +29,12 @@ class TgContext extends Context {
   }) {
     media = MediaDAO(db);
     users = UsersDAO(db);
+    chats = ChatsDAO(db);
   }
   // Static method that returns ContextConstructor
   static ContextConstructor<TgContext> create(ProviderContainer container) {
     return ({required api, required me, required update}) async {
-      return TgContext(
-        api: api,
-        me: me,
-        update: update,
-        container: container,
-      );
+      return TgContext(api: api, me: me, update: update, container: container);
     };
   }
 
@@ -66,12 +63,35 @@ class TgContext extends Context {
     }
 
     final maybeId = int.tryParse(args.first);
-    final target = maybeId == null
-        ? await users.readUsername(args.first)
-        : await users.read(maybeId);
+    final target =
+        maybeId == null
+            ? await users.readUsername(args.first)
+            : await users.read(maybeId);
 
     if (target == null) {
-      await reply(i18n.errors.unknownUsername);
+      await reply(i18n.errors.unknownUser);
+      return null;
+    }
+
+    return target;
+  }
+
+  Future<Chat?> targetChat() async {
+    final i18n = t(await user());
+
+    if (args.isEmpty) {
+      await reply(i18n.errors.notEnoughArgs);
+      return null;
+    }
+
+    final maybeId = int.tryParse(args.first);
+    final target =
+        maybeId == null
+            ? await chats.readUsername(args.first)
+            : await chats.read(maybeId);
+
+    if (target == null) {
+      await reply(i18n.errors.unknownChat);
       return null;
     }
 

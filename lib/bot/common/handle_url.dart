@@ -106,14 +106,15 @@ Future<List<String>> _sendMedia(
     int end = (i + 10 < mediaIds.length) ? i + 10 : mediaIds.length;
     final chunk = mediaIds.sublist(i, end);
 
-    final inputs = chunk.map((id) {
-      if (isLocal) {
-        final file = File(p.join(ctx.settings.storagePath, id));
-        return tg.InputMediaPhoto(media: InputFile.fromFile(file));
-      } else {
-        return tg.InputMediaPhoto(media: InputFile.fromFileId(id));
-      }
-    }).toList();
+    final inputs =
+        chunk.map((id) {
+          if (isLocal) {
+            final file = File(p.join(ctx.settings.storagePath, id));
+            return tg.InputMediaPhoto(media: InputFile.fromFile(file));
+          } else {
+            return tg.InputMediaPhoto(media: InputFile.fromFileId(id));
+          }
+        }).toList();
 
     final msg = await ctx.replyWithMediaGroup(inputs);
     resultIds.addAll(msg.map((e) => e.photo!.first.fileId));

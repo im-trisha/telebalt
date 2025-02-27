@@ -16,9 +16,11 @@ Future<void> onMessage(TgContext ctx) async {
     await handleUrl(ctx, url: text, chat: ctx.chat!.getId(), caption: caption);
     await ctx.deleteMessage();
   } on ErrorResponse catch (e) {
-    final code = e.error.code.split('error.api.').last;
     await ctx.react('💔');
-    await ctx.reply(ctx.t(user).errors.api[code] ?? code);
+
+    final code = e.error.code.split('error.api.').last;
+    final errorContext = e.error.context?.toJson() ?? {};
+    await ctx.reply(ctx.t(user).errors.api[code]?.format(errorContext) ?? code);
   } catch (e) {
     await ctx.react('💔');
     await ctx.reply(ctx.t(user).errors.generic);

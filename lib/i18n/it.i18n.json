@@ -1,23 +1,33 @@
 {
   "errors": {
-    "generic": "Il bot ha avuto un problema mentre gestiva l'url. L'errore viene probabilmente dal bot e non dalle api.",
+    "generic": "Il bot ha avuto un problema mentre gestiva l'url. L'errore viene probabilmente dal bot e non dalle ",
     "not_enough_args": "Non abbastanza argomenti",
-    "unknown_username": "Username sconosciuto, assicurati che abbia inviato un messaggio dopo il cambio di username",
+    "unknown_user": "Utente sconosciuto, assicurati che abbia inviato un messaggio dopo il cambio di username",
+    "unknown_chat": "Chat sconosciuta",
     "inline": {
       "unsupported": "Formato non supportato",
       "unsupported_details": "Il formato del video non è supportato.\nHai probabilmente provato ad inviare un url di Tiktok contenente più di un immagine, non è possibile inviarli inline per delle limitazioni di telegram, controlla i messaggi privati"
     },
     "api(map)": {
-      "auth.jwt.missing": "Impossibile confermare se non sei un robot perché il server di elaborazione non ha ricevuto il token di accesso umano. riprova tra qualche secondo o ricarica la pagina!",
+      "auth.key.missing": "Per utilizzare questa istanza è necessaria una chiave di accesso, ma manca. Aggiungila nelle impostazioni dell'istanza!",
+      "auth.key.not_api_key": "Per utilizzare questa istanza è necessaria una chiave di accesso, ma manca. Aggiungila nelle impostazioni dell'istanza!",
+      "auth.key.invalid": "La chiave di accesso non è valida. Ripristinarla nelle impostazioni dell'istanza e utilizzarne una corretta!",
+      "auth.key.not_found": "La chiave di accesso utilizzata non è stata trovata. Sei sicuro che questa istanza abbia la tua chiave?",
+      "auth.key.invalid_ip": "Non è stato possibile analizzare il tuo indirizzo IP. Qualcosa è andato storto. Segnala questo problema!",
+      "auth.key.ip_not_allowed": "Il tuo indirizzo ip non è autorizzato a utilizzare questa chiave di accesso. Utilizza un'istanza o una rete diversa!",
+      "auth.key.ua_not_allowed": "Questo UserAgent non è autorizzato a utilizzare questa chiave di accesso. Utilizza un client o un dispositivo diverso!",
+      "auth.jwt.missing": "Impossibile confermare se non sei un robot perché il server non ha ricevuto il token di accesso umano. riprova tra qualche secondo o ricarica la pagina!",
       "auth.jwt.invalid": "Non è stato possibile confermare che non sei un robot perché il token di accesso umano è scaduto e non è stato rinnovato. riprova tra qualche secondo o ricarica la pagina!",
-      "auth.turnstile.missing": "Impossibile confermare se non sei un robot perché il server di elaborazione non ha ricevuto il token di accesso umano. riprova tra qualche secondo o ricarica la pagina!",
+      "auth.turnstile.missing": "Impossibile confermare se non sei un robot perché il server non ha ricevuto il token di accesso umano. riprova tra qualche secondo o ricarica la pagina!",
       "auth.turnstile.invalid": "Impossibile confermare che non sei un robot perché il token di accesso umano è scaduto e non è stato rinnovato. riprova tra qualche secondo o ricarica la pagina!",
-      "unreachable": "Impossibile connettersi al server di elaborazione. controllare la connessione internet e riprovare",
-      "timed_out": "Il server di elaborazione ha impiegato troppo tempo per rispondere. potrebbe essere sovraccarico al momento, riprovare tra qualche secondo!",
+      "unreachable": "Impossibile connettersi al server. controllare la connessione internet e riprovare",
+      "timed_out": "Il server ha impiegato troppo tempo per rispondere. potrebbe essere sovraccarico al momento, riprovare tra qualche secondo!",
       "rate_exceeded": "Le richieste sono troppe, riprovare tra {limit} secondi!",
       "capacity": "Cobalt è al limite della capacità e non può elaborare la tua richiesta al momento. riprova tra qualche secondo. se ancora non funziona, faccelo sapere e cercheremo di aiutarti!",
       "generic": "Qualcosa è andato storto e non ho potuto ottenere nulla per te. riprova tra qualche secondo, ma se il problema persiste, facci sapere e cercheremo di aiutarti!",
       "unknown_response": "Impossibile analizzare la risposta dal server. questo potrebbe essere causato da un errore di versione. sei sicuro di avere l'ultima versione di cobalt?",
+      "invalid_body": "Impossibile inviare la richiesta all'istanza. Questo è probabilmente causato dal fatto che l'applicazione web non è aggiornata. ricaricare l'applicazione e riprovare!",
+      "service.audio_not_supported": "Questo servizio non supporta l'estrazione audio. Provare un link da un altro servizio!",
       "service.unsupported": "Questo servizio non è ancora supportato. hai incollato il link giusto?",
       "service.disabled": "Questo servizio è supportato da cobalt, ma è disabilitato su questa istanza. prova un link da un altro servizio!",
       "link.invalid": "Il tuo link non è valido o questo servizio non è ancora supportato. hai incollato il link giusto?",
@@ -25,30 +35,38 @@
       "fetch.fail": "Qualcosa è andato storto durante il recupero delle informazioni da {service} e non sono riuscito a trovare nulla per te. sei sicuro che il tuo link funzioni? se lo fa e vedi ancora questo errore, faccelo sapere e cercheremo di aiutarti!",
       "fetch.critical": "Il modulo {service} ha restituito un errore che non riconosco. riprova tra qualche secondo, ma se il problema persiste, facci sapere!",
       "fetch.empty": "Non è stato possibile trovare alcun supporto da scaricare per te. sei sicuro di aver incollato il link giusto?",
-      "fetch.rate": "Il server di elaborazione cobalt è stato limitato dalla {service}  riprova tra qualche secondo!",
+      "fetch.rate": "Il server cobalt è stato limitato dalla {service}  riprova tra qualche secondo!",
       "fetch.short_link": "Impossibile ottenere informazioni sul link dal link breve. sei sicuro che funzioni? se funziona e ricevi comunque questo errore, faccelo sapere e cercheremo di aiutarti!",
       "content.too_long": "Il media che hai richiesto è troppo lungo. il limite di durata attuale è {limit} minuti. prova invece qualcosa di più breve!",
       "content.video.unavailable": "Non riesco ad accedere a questo video. potrebbe essere limitato da {service}. hai incollato il link giusto?",
       "content.video.live": "Questo video è attualmente in diretta, quindi non posso ancora scaricarlo. aspetta che il live stream finisca e poi riprova!",
       "content.video.private": "Questo video è privato, quindi non posso accedervi. cambiatene la visibilità o provate con un altro!",
       "content.video.age": "Questo video è vietato all'età, quindi non posso accedervi in modo anonimo. provane un altro!",
-      "content.video.region": "Questo video è bloccato per regione e il server di elaborazione si trova in una località diversa. provane un altro!",
+      "content.video.region": "Questo video è bloccato per regione e il server si trova in una località diversa. provane un altro!",
       "content.post.unavailable": "Non è stato possibile trovare nulla su questo post. la sua visibilità potrebbe essere limitata o potrebbe non esistere affatto. assicuratevi che il vostro link funzioni e riprovate tra qualche secondo!",
       "content.post.private": "Questo post proviene da un account privato, quindi non posso accedervi. hai incollato il link giusto?",
       "content.post.age": "Questo post ha un'età limitata, quindi non posso accedervi anonimamente. hai incollato il link giusto?",
+      "content.region": "Questo contenuto è bloccato per regione e l'istanza si trova in una posizione diversa. Provare con un altro link!",
+      "content.paid": "Questo contenuto richiede un acquisto. Cobalt non può scaricare contenuti a pagamento. Prova un altro link!",
+      "youtube.no_matching_format": "Youtube non ha restituito una combinazione di formato video + audio valida, manca il video o l'audio. I formati di questo video potrebbero essere ricodificati da youtube o qualcosa è andato storto durante l'analisi. Prova ad abilitare l'opzione hls nelle impostazioni video!",
+      "youtube.api_error": "Youtube ha aggiornato qualcosa sulla sua api e non ho potuto ottenere alcuna informazione su questo video. Riprova tra qualche secondo, ma se il problema persiste, segnalalo!",
+      "youtube.temporary_disabled": "Il download da youtube è temporaneamente disabilitato a causa di restrizioni da parte di youtube. stiamo già cercando un modo per aggirarle.Ci scusiamo per l'inconveniente e stiamo facendo del nostro meglio per ripristinare questa funzionalità. Controllate i social di cobalt o github per aggiornamenti tempestivi!",
       "youtube.codec": "Youtube non ha restituito nulla con il tuo codec video preferito. provane un altro nelle impostazioni!",
       "youtube.decipher": "Youtube ha aggiornato il suo algoritmo di decifrazione e non ho potuto estrarre le informazioni sul video.Riprova tra qualche secondo, ma se il problema persiste, contattaci per il supporto",
-      "youtube.login": "Non è stato possibile ottenere questo video perché youtube mi ha etichettato come bot. questo è potenzialmente causato dal fatto che l'istanza di elaborazione non ha alcun token di account attivo. riprova tra qualche secondo, ma se ancora non funziona, segnala questo errore al proprietario dell'istanza!",
+      "youtube.login": "Non è stato possibile ottenere questo video perché youtube mi ha etichettato come bot. questo è potenzialmente causato dal fatto che l'istanza non ha alcun token di account attivo. riprova tra qualche secondo, ma se ancora non funziona, segnala questo errore al proprietario dell'istanza!",
       "youtube.token_expired": "Non è stato possibile ottenere questo video perché il token di youtube è scaduto e non ho potuto aggiornarlo. riprova tra qualche secondo, ma se ancora non funziona, segnala questo errore al proprietario dell'istanza!",
       "youtube.no_hls_streams": "Impossibile trovare flussi HLS corrispondenti. provare con altre impostazioni!"
     }
   },
+  "unauthorized_chat": "Non sono autorizzato a rimanere qui dentro",
   "commands": {
     "authorize": {
-      "success": "L'utente è stato autorizzato con successo"
+      "chatSuccess": "La chat è stata autorizzata con successo",
+      "userSuccess": "L'utente è stato autorizzato con successo"
     },
     "unauthorize": {
-      "success": "L'utente è stato deautorizzato con successo"
+      "chatSuccess": "La chat è stata deautorizzata con successo",
+      "userSuccess": "L'utente è stato deautorizzato con successo"
     },
     "promote": {
       "success": "L'utente è stato promosso con successo"

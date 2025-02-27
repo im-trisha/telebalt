@@ -2,10 +2,8 @@ part of '../../network.dart';
 
 @freezed
 sealed class ServerInfo with _$ServerInfo {
-  const factory ServerInfo({
-    required CobaltInfo cobalt,
-    required GitInfo git,
-  }) = _ServerInfo;
+  const factory ServerInfo({required CobaltInfo cobalt, required GitInfo git}) =
+      _ServerInfo;
 
   factory ServerInfo.fromJson(Map<String, Object?> json) =>
       _$ServerInfoFromJson(json);

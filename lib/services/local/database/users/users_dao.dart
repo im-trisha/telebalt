@@ -28,17 +28,21 @@ class UsersDAO extends DatabaseAccessor<Database> with _$UsersDAOMixin {
     bool? isAdmin,
     String? friendlyNickname,
   }) {
-    return db.into(db.users).insertReturning(UsersCompanion(
-          id: Value(id),
-          firstName: Value.absentIfNull(firstName),
-          lastName: Value.absentIfNull(lastName),
-          username: Value.absentIfNull(username),
-          language: Value.absentIfNull(language),
-          isPremium: Value.absentIfNull(isPremium),
-          isAuthorized: Value.absentIfNull(isAuthorized),
-          isAdmin: Value.absentIfNull(isAdmin),
-          friendlyNickname: Value.absentIfNull(friendlyNickname),
-        ));
+    return db
+        .into(db.users)
+        .insertReturning(
+          UsersCompanion(
+            id: Value(id),
+            firstName: Value.absentIfNull(firstName),
+            lastName: Value.absentIfNull(lastName),
+            username: Value.absentIfNull(username),
+            language: Value.absentIfNull(language),
+            isPremium: Value.absentIfNull(isPremium),
+            isAuthorized: Value.absentIfNull(isAuthorized),
+            isAdmin: Value.absentIfNull(isAdmin),
+            friendlyNickname: Value.absentIfNull(friendlyNickname),
+          ),
+        );
   }
 
   Future<void> patch(
@@ -52,18 +56,18 @@ class UsersDAO extends DatabaseAccessor<Database> with _$UsersDAOMixin {
     bool? isAdmin,
     String? friendlyNickname,
   }) {
-    return (db.update(db.users)..where((tbl) => tbl.id.equals(id)))
-        .write(UsersCompanion(
-      id: Value(id),
-      firstName: Value.absentIfNull(firstName),
-      lastName: Value.absentIfNull(lastName),
-      username: Value.absentIfNull(username),
-      language: Value.absentIfNull(language),
-      isPremium: Value.absentIfNull(isPremium),
-      isAuthorized: Value.absentIfNull(isAuthorized),
-      isAdmin: Value.absentIfNull(isAdmin),
-      friendlyNickname: Value.absentIfNull(friendlyNickname),
-    ));
+    return (db.update(db.users)..where((tbl) => tbl.id.equals(id))).write(
+      UsersCompanion(
+        firstName: Value.absentIfNull(firstName),
+        lastName: Value.absentIfNull(lastName),
+        username: Value.absentIfNull(username),
+        language: Value.absentIfNull(language),
+        isPremium: Value.absentIfNull(isPremium),
+        isAuthorized: Value.absentIfNull(isAuthorized),
+        isAdmin: Value.absentIfNull(isAdmin),
+        friendlyNickname: Value.absentIfNull(friendlyNickname),
+      ),
+    );
   }
 
   Future<int> upsert(
@@ -77,16 +81,20 @@ class UsersDAO extends DatabaseAccessor<Database> with _$UsersDAOMixin {
     bool? isAdmin,
     String? friendlyNickname,
   }) async {
-    return db.into(db.users).insertOnConflictUpdate(UsersCompanion(
-          id: Value(id),
-          firstName: Value.absentIfNull(firstName),
-          lastName: Value.absentIfNull(lastName),
-          username: Value.absentIfNull(username),
-          language: Value.absentIfNull(language),
-          isPremium: Value.absentIfNull(isPremium),
-          isAuthorized: Value.absentIfNull(isAuthorized),
-          isAdmin: Value.absentIfNull(isAdmin),
-          friendlyNickname: Value.absentIfNull(friendlyNickname),
-        ));
+    return db
+        .into(db.users)
+        .insertOnConflictUpdate(
+          UsersCompanion(
+            id: Value(id),
+            firstName: Value.absentIfNull(firstName),
+            lastName: Value.absentIfNull(lastName),
+            username: Value.absentIfNull(username),
+            language: Value.absentIfNull(language),
+            isPremium: Value.absentIfNull(isPremium),
+            isAuthorized: Value.absentIfNull(isAuthorized),
+            isAdmin: Value.absentIfNull(isAdmin),
+            friendlyNickname: Value.absentIfNull(friendlyNickname),
+          ),
+        );
   }
 }

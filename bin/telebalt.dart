@@ -11,6 +11,7 @@ void main(List<String> args) async {
   bot.contextBuilder(TgContext.create(container));
 
   bot.use(SaveUser());
+  bot.use(SaveChat());
 
   bot.onError(onError);
 
@@ -18,11 +19,14 @@ void main(List<String> args) async {
   bot.command('start', start);
   bot.command('promote', promote);
   bot.command('demote', demote);
-  bot.command('authorize', authorize);
-  bot.command('unauthorize', unauthorize);
+  bot.command('uauthorize', authorizeUser);
+  bot.command('uunauthorize', unauthorizeUser);
+  bot.command('cauthorize', authorizeChat);
+  bot.command('cunauthorize', unauthorizeChat);
   bot.command('nickname', nickname);
   bot.command('status', status);
   bot.command('users', users);
+  bot.command('chats', chats);
 
   bot.onInlineQuery(onInlineQuery);
 
@@ -33,10 +37,12 @@ void main(List<String> args) async {
   final talker = container.read(loggerProvider);
   bot.onStop(() => talker.info("The bot has been stopped."));
 
-  talker.info("Starting bot...");
+  // Need to send a pr to televerse: final botUser = await bot.getMe();
+  // talker.info("Starting bot ${botUser.firstName} (${botUser.username})...");
 
   await bot.start();
 
   talker.info("Tidying resources...");
   container.dispose();
+  talker.info("Resources tidied up. Bye bye!");
 }

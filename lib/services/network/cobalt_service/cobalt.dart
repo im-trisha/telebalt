@@ -15,10 +15,7 @@ abstract class CobaltService {
   Future<ServerInfo> serverInfo();
 
   @POST('/')
-  @Headers({
-    'Accept': 'application/json',
-    'Content-Type': 'application/json',
-  })
+  @Headers({'Accept': 'application/json', 'Content-Type': 'application/json'})
   Future<MediaResponse> getMedia(@Body() MediaRequest request);
 }
 
@@ -38,13 +35,12 @@ extension Download on CobaltService {
       TunnelResponse res => ([_randId()], [res.url], res.filename),
       RedirectResponse res => ([_randId()], [res.url], res.filename),
       PickerResponse res => (
-          List.generate(res.picker.length, (_) => _randId()),
-          res.picker.map((e) => e.url).toList(),
-          'multiples'
-        ),
-      ErrorResponse r => throw Exception(
-          'Error while handling response: ${r.toJson()}',
-        ),
+        List.generate(res.picker.length, (_) => _randId()),
+        res.picker.map((e) => e.url).toList(),
+        'multiples',
+      ),
+      ErrorResponse r =>
+        throw Exception('Error while handling response: ${r.toJson()}'),
     };
 
     for (int i = 0; i < urls.length; i++) {
