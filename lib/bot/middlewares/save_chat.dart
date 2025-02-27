@@ -6,7 +6,7 @@ class SaveChat implements Middleware<TgContext> {
     final chat = ctx.chat;
     final isPrivate = [ChatType.private, ChatType.sender].contains(chat?.type);
 
-    if (chat == null || isPrivate) return;
+    if (chat == null || isPrivate) return await next();
 
     await ctx.chats.upsert(
       chat.id,

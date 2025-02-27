@@ -65,8 +65,8 @@
       "userSuccess": "The user has been authorized successfully"
     },
     "unauthorize": {
-      "chatSuccess": "The chat has been unauthorize successfully",
-      "userSuccess": "The user has been unauthorize successfully"
+      "chatSuccess": "The chat has been unauthorized successfully",
+      "userSuccess": "The user has been unauthorized successfully"
     },
     "promote": {
       "success": "The user has been promoted successfully"
